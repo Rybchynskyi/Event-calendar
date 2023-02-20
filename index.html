@@ -1,0 +1,208 @@
+<!--<?php include 'modules/create_calendar.php' ?>-->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BusinessSreda Task</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;600&display=swap" rel="stylesheet">
+    <script src="js/createCalendar.js"></script>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="#"><b>EVENTS (node.js)</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Main</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">FAQ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <h2>Calendar</h2>
+    </div>
+    <div class="row my-3">
+        <div class="col-sm">
+            <button id="allCategories" class="events transparent">All</button>
+            <button id="redCategories" class="events red">Meeting with an expert</button>
+            <button id="greenCategories" class="events green">Question-answer</button>
+            <button id="yellowCategories" class="events yellow">Conference</button>
+            <button id="blueCategories" class="events blue">Webinar</button>
+        </div>
+    </div>
+    <div id="calendars" class="row calendars">
+        <script>
+            createCalendar(7, 5, 31);
+            createCalendar(8, 1, 31);
+            createCalendar(9,4, 30);
+            createCalendar(10, 6, 31);
+            createCalendar(11, 2, 30);
+            createCalendar(12, 4, 31);
+
+        </script>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="row">
+        <div class="col-sm text-center mt-3">
+            <h2>EVENTS</h2>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center footerContent my-1">
+        <span>Main</span>
+        <span>Events</span>
+        <span>Calendar</span>
+        <span>FAQ</span>
+    </div>
+    <div class="d-flex justify-content-center allRights my-3">
+        <span>© 2022 All rights reserved</span>
+    </div>
+</div>
+
+<!--Slider with event-->
+<div id="slider" class="slider">
+    <div class="d-flex justify-content-between">
+        <div class="sliderName">
+            Events
+        </div>
+        <button id="closeEvents" class="btn-close"  aria-label="Close">
+        </button>
+    </div>
+    <hr class="sliderBottom">
+    <div id="sliderScroll" class="sliderScroll">
+        <!--here will be elements from the file show_events.js-->
+    </div>
+    <div class="d-flex justify-content-end mt-2">
+        <button class="buttonPink" data-bs-toggle="modal" data-bs-target="#addModal">Add event</button>
+    </div>
+</div>
+
+<!--Modal add -->
+<div class="modal fade modalEventBg" id="addModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">Add event</h5>
+                <button id="addModalClose" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div>
+                <hr>
+            </div>
+            <div class="modal-body">
+                <form id="formAdd">
+                    <div class="form-floating text-black mb-4">
+                        <input type="text" class="form-control" id="eventName" placeholder="eventName" name="eventName" required>
+                        <label for="eventName">Event name...</label>
+                    </div>
+                    <div class="form-floating text-black mb-4">
+                        <textarea type="text" class="form-control" id="eventDescr" placeholder="eventName" style="min-height: 132px" name="eventDescr" required></textarea>
+                        <label for="eventName">Event description...</label>
+                    </div>
+                    <div class="form-floating text-black mb-4">
+                        <input type="text" class="form-control" id="eventLocation" placeholder="eventLocation" name="eventLocation" required>
+                        <label for="eventLocation">Location...</label>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-auto">
+                            <div id="popupDate" class="eventTime mt-1 pb-2"></div>
+                        </div>
+                        <div class="col-sm">
+                            <input type="hidden" class="form-control" id="eventDate" placeholder="eventDate" name="eventDate" required>
+                            <input type="time" class="form-control" id="eventTime" placeholder="eventTime" name="eventTime" value="20:00">
+                        </div>
+                    </div>
+                    <select class="form-select mb-4" id="floatingSelect" name="eventType">
+                        <option value="1" selected>Meeting with an expert</option>
+                        <option value="2">Question-answer</option>
+                        <option value="3">Conference</option>
+                        <option value="4">Webinar</option>
+                    </select>
+                    <div class="modal-footer">
+                        <button type="button" class="buttonBlack" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="buttonPink">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal edit -->
+<div class="modal fade modalEventBg" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">Edit event</h5>
+                <button id="editModalClose" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div>
+                <hr>
+            </div>
+            <div class="modal-body">
+                <form id="formEdit">
+                    <div class="form-floating text-black mb-4">
+                        <input type="text" class="form-control" id="eventEditName" placeholder="eventName" name="eventName" required>
+                        <label for="eventName">Event name...</label>
+                    </div>
+                    <div class="form-floating text-black mb-4">
+                        <textarea type="text" class="form-control" id="eventEditDescr" placeholder="eventName" style="min-height: 132px" name="eventDescr" required></textarea>
+                        <label for="eventName">Event description...</label>
+                    </div>
+                    <div class="form-floating text-black mb-4">
+                        <input type="text" class="form-control" id="eventEditLocation" placeholder="eventLocation" name="eventLocation" required>
+                        <label for="eventLocation">Location...</label>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm">
+                            <input type="datetime-local" class="form-control py-1" id="eventEditDateTime" placeholder="eventTime" name="eventDateTime" required>
+                            <input id="eventId" type="hidden" class="form-control py-1" id="eventId" placeholder="eventId" name="eventId">
+                        </div>
+                    </div>
+                    <select class="form-select mb-4" id="floatingSelect" name="eventType">
+                        <option value="1" selected>Meeting with an expert</option>
+                        <option value="2">Question-answer</option>
+                        <option value="3">Conference</option>
+                        <option value="4">Webinar</option>
+                    </select>
+                    <div id="deleteFooter" class="modal-footer">
+                        <button type="button" class="buttonBlack" data-bs-dismiss="modal">Cancel</button>
+                        <button id="deleteButton" type="button" class="buttonDelete">Delete</button>
+                        <button type="submit" class="buttonPink">Save</button>
+                        <div id="beSureBlock" class="beSureBlock d-inline-flex justify-content-end align-items-center d-none">
+                            <div class="bSure">Are you sure?</div>
+                            <button id="deleteButtonNoSure" type="button" class="buttonBlack">No</button>
+                            <button type="button" id="deleteButtonForSure" class="buttonDeleteSure">Yes</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script type="module" src="js/eventsInDate.js"></script>
+<script type="module" src="js/controller.js"></script>
+</body>
+</html>
