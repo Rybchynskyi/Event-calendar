@@ -8,8 +8,10 @@ Application with CRUD and without refreshing
 
 ## For deploying:
 1. Download the project
-2. Import [database.sql](https://github.com/Rybchynskyi/auction/blob/master/database.sql) into your local database
-3. Run server with PHP >=7.1 
+2. Install Node.js on your computer if you haven't already
+3. Run the command "npm install"
+4. Import [database.sql](https://github.com/Rybchynskyi/Event-calendar/blob/master/database.sql) into your local database
+5. Write your database settings into modules/config_db.js
 
 ## About the project
 The main business purpose was in creating a simply and understandable calendar, where administrators can add, change and delete events, and other users (clients) can view them.
@@ -22,12 +24,13 @@ Flexibility: Overwhelming majority of users will surf this page with the phone
 
 Based on the tasks, I started the development
 
-__1.Simply surfing__
+### __1.Simply surfing__
+
 Each event can be just in one type:
-⋅⋅* Meeting with an expert
-⋅⋅* Question-answer
-⋅⋅* Conference
-⋅⋅* Webinar
+- Meeting with an expert
+- Question-answer
+- Conference
+- Webinar
 
 
 For a better selection was implemented a filter:
@@ -47,16 +50,16 @@ Each type of event have their particular color. And after pressing one of the fi
 Pressed button will have border, that mean that filter is in active statement.
 Each day on the calendar, that has at least one of the event in the chosen type - has a dot in the particular color of the event.
 
-__2. Single paged calendar__
+### __2. Single paged calendar__
 Nowadays, users are very annoyed when they have to wait for some actions on the page, or when web-page makes a redirecting or flicking after that. That's why all requests to the server were developed by using global FETCH method for catching information from the servers without refreshing and redirecting.
 Server was created using Node.js - it's the better way for having fast and establish connection.
 
 
 All requests to the server are going through the API page, and the answers from the server depend on the request method:
-⋅⋅* GET - getting event list
-⋅⋅* POST - adding new event
-⋅⋅* PUT - edit some particular event
-⋅⋅* DELETE - deleting some particular event
+- GET - getting event list
+- POST - adding new event
+- PUT - edit some particular event
+- DELETE - deleting some particular event
 
 After successful action, server response status 200 and result of the request. After that, using global FETCH method, page refreshes event list, updates color of dots and shows the message about successfully action.
 
@@ -65,7 +68,7 @@ After successful action, server response status 200 and result of the request. A
  </p>
 <br>
 
-__3. Easy administrating__
+### __3. Easy administrating__
 I could have made a particular page for the administrators. But a better way will be making the possibility for creating, editing and deleting events using the same page as for users. If you are administrator - you can make CRUD actions with the events. If you are a client - then you have just filter buttons. All CRUD requests are based on a single-page rule (2), like for clients.
 Based on the understanding, that administrator can delete the event by mistake - I created confirmation of deleting. It appears near the deleting button. Ant if you really want to delete this event - you have to move your mouse a little to the right for confirmation your action:
 <table border="0" align="center">
@@ -85,7 +88,7 @@ Based on the understanding, that administrator can delete the event by mistake -
  </tr>
 </table>
 
-__4. Flexibility__
+### __4. Flexibility__
 Considering that users mostly use mobile phones, I decided to use the bootstrap framework. It helps to improve the user experience and save time for the development of other features of the application:
 
 <table border="0" align="center">
